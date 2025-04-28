@@ -43,6 +43,6 @@ chmod +x install_mc_server.sh
 - Supports parallel installation of multiple servers.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the CC BY-NC 4.0 License.
 
 ---
