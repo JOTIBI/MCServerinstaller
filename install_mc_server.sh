@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Minecraft Server Auto-Installer Script
-# Developed and proudly powered by JOTIBI
 
 clear
 
@@ -106,7 +104,13 @@ esac
 
 echo "eula=true" > eula.txt
 
-SERVER_JAR=$(find . -maxdepth 1 -name "*.jar" ! -name "*installer*.jar" ! -name "BuildTools.jar" | head -n 1)
+if [[ "$SERVER_TYPE" == "2" ]]; then
+  SERVER_JAR=$(find . -maxdepth 1 -name "forge-*.jar" ! -name "*installer*" | head -n 1)
+elif [[ "$SERVER_TYPE" == "3" ]]; then
+  SERVER_JAR=$(find . -maxdepth 1 -name "fabric-server-launch.jar" | head -n 1)
+else
+  SERVER_JAR=$(find . -maxdepth 1 -name "*.jar" ! -name "*installer*.jar" ! -name "BuildTools.jar" | head -n 1)
+fi
 
 cat > start.sh <<EOF
 #!/bin/bash
@@ -127,6 +131,8 @@ if command -v ufw &> /dev/null; then
     if [[ "$UFW_CHOICE" == "y" ]]; then
         ufw allow "$SERVER_PORT"
     fi
+else
+    echo "Note: 'ufw' not installed. No firewall rule was created."
 fi
 
 read -p "Do you want to start the server now? (y/n, default: n): " START_NOW
