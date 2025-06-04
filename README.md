@@ -10,7 +10,7 @@ A user-friendly bash script to quickly and reliably set up Minecraft servers.
 - Fabric
 - Spigot
 - Paper
-- Bungeecord
+- BungeeCord
 
 ## Features
 - Interactive installation with clear instructions
