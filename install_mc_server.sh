@@ -115,7 +115,7 @@ fi
 cat > start.sh <<EOF
 #!/bin/bash
 cd "\$(dirname "\$0")"
-if screen -list | grep -q "$SERVER_NAME"; then
+if screen -list | grep -wq "$SERVER_NAME"; then
   echo "Server '\$SERVER_NAME' is already running."
   exit 1
 fi
