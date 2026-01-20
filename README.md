@@ -4,6 +4,10 @@
 
 A user-friendly bash script to quickly and reliably set up Minecraft servers.
 
+---
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I61SOC0C)
+
 ## Supported Server Types
 - Vanilla
 - Forge
