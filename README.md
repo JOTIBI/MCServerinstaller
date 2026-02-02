@@ -1,5 +1,5 @@
 # Minecraft Server Auto-Installer
-A **fully automated Bash script** for installing, starting, and managing Minecraft servers on Linux The focus is on **correctness, transparency, debuggability, and control**.
+A **fully automated Bash script** for installing, starting, and managing Minecraft servers on Linux.
 ---
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I61SOC0C)
