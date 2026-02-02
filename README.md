@@ -1,58 +1,80 @@
-# Minecraft Java Auto-Installer
-
-This script provides an automated installation process for multiple Java versions on Debian-based Linux systems, optimized for running Minecraft servers.
-
+# Minecraft Server Auto-Installer
+A **fully automated Bash script** for installing, starting, and managing Minecraft servers on Linux The focus is on **correctness, transparency, debuggability, and control**.
 ---
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/I3I61SOC0C)
 
+## Table of Contents
+- Overview
+- Features
+- Supported Server Types
+- Requirements
+- Installation
+- Start & Usage
+- Java Selection & Recommendation
+- Fabric Logic (important)
+- Debug Mode
+- Uninstaller
+- Directory Structure
+- Common Errors & Solutions
+- Production Notes
+---
+## Overview
+This script installs Minecraft servers **interactively** and always starts them inside a `screen` seYou choose:
+- Server type
+- Minecraft version
+- RAM & port
+- **specific Java version** the server should use
+The script **does not modify your system Java**, but stores the selected Java binary locally per serv---
 ## Features
-
-- Interactive selection of Java versions to install
-- Supports Java 8 (manual install), Java 11, 17, 19, and default-jdk from APT
-- Auto-detection of missing packages (`curl`, `sudo`, `tar`) and guided installation
-- Optional logging of all output to a log file
-- Displays currently installed Java versions
-- Guides the user through setting default `java` and `javac` versions
-
-## Supported Java Versions
-
-| Option | Java Version | Minecraft Version Range       |
-|--------|--------------|-------------------------------|
-| 1      | Java 8       | Minecraft 1.8 – 1.16.x        |
-| 2      | Java 11      | Minecraft 1.17 – 1.18.x       |
-| 3      | Java 17      | Minecraft 1.18.2 – 1.20.4     |
-| 4      | Java 19      | Experimental / Snapshots      |
-| 5      | Default JDK  | Future Versions (1.21+)       |
-
+- ■ Server types:
+ - Vanilla
+ - Forge
+ - Fabric
+ - Spigot
+ - Paper
+ - Bungeecord
+- ■ Automatic installation of all requirements (`apt`)
+- ■ Server always runs inside `screen`
+- ■ Selection of an installed Java version (`update-alternatives`)
+- ■ Java recommendation matching the Minecraft version
+- ■ `--debug` mode with clean script logging
+- ■ `--uninstall` mode (including screen session cleanup)
+- ■ No Python
+- ■ No hardcoded Java
+- ■ No broken JSON parsing
+---
+## Supported Server Types
+| Type | Source / Method |
+|------------|-----------------|
+| Vanilla | Mojang version manifest |
+| Forge | Official Forge installer (`--installServer`) |
+| Fabric | Fabric Meta API (loader + installer) |
+| Spigot | BuildTools (legally compliant) |
+| Paper | PaperMC REST API |
+| Bungeecord | Official BungeeCord artifact |
+---
 ## Requirements
-
-- Debian/Ubuntu-based system
-- Shell access with `sudo` privileges
-- Internet access
-
-## How to Use
-
-1. Download the script: `install_mc_java.sh`
-2. Make it executable:
-   ```bash
-   chmod +x install_mc_java.sh
-   ```
-3. Run the script:
-   ```bash
-   ./install_mc_java.sh
-   ```
-4. Follow the on-screen prompts to select and install Java versions.
-
-## Optional Logging
-
-To log all output to `install_java.log`, run:
+### Operating System
+- Debian / Ubuntu
+- Root or sudo privileges
+### Automatically installed:
+- `curl`
+- `jq`
+- `screen`
+- `ca-certificates`
+- `default-jre`
+- additionally depending on type:
+ - Spigot → `git`, `default-jdk`
+ - Forge → `default-jdk`
+You do **not** need to prepare anything manually.
+---
+## Installation
 ```bash
-./install_mc_java.sh --log
+chmod +x mc-installer.sh
+./mc-installer.sh
 ```
-
 ## License
-
 Copyright (c) 2026 JOTIBI
 
 Permission is hereby granted to use this software on any Minecraft server
